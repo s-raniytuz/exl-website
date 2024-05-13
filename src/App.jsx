@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import "./App.css";
-import { db } from "./firebaseconfig";
+import { db, storage } from "./firebaseconfig";
 import { getDocs, collection } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
+import { saveAs } from "file-saver";
 
 const myCollection = collection(db, "testcollection");
 
 function App() {
   const [testData, setTestData] = useState([]);
+  const [testURL, setTestURL] = useState();
 
   useEffect(() => {
     async function getData() {
@@ -25,15 +28,28 @@ function App() {
       }
     }
 
+    async function getStorageUrl() {
+      try {
+        const reference = ref(storage, "app-debug.zip");
+        const downloadURL = await getDownloadURL(reference);
+        setTestURL(downloadURL);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     getData();
+    getStorageUrl();
   }, []);
+
+  function handleDownloadFile() {
+    saveAs(testURL, "dodik.zip");
+  }
 
   return (
     <div className="h-full w-full bg-slate-900">
       <h1 className="text-slate-100">saranin 2040</h1>
-      <Button className="bg-slate-100 text-slate-900 hover:bg-slate-400">
-        Download
-      </Button>
+      <Button onClick={handleDownloadFile}>DOWNLOAD TEXT FILE</Button>
       {testData.map((data) => {
         return (
           <ul key={data.id}>
