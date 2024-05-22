@@ -4,3 +4,8 @@ body,
   height: 100%;
   width: 100%;
 }
+
+#root {
+  background-color: #f6f2ff;
+  padding: 0 24px;
+}

@@ -1,0 +1,23 @@
+#iconPath {
+  fill: url(#myGradient);
+}
+
+@keyframes rotateicon {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#iconSvg {
+  animation-name: rotateicon;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  width: 85%;
+  max-width: 29rem;
+  z-index: -100;
+}
