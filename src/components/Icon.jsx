@@ -4,7 +4,7 @@ export default function Icon() {
   return (
     <div
       id="icon-svg-wrapper"
-      className="absolute flex w-full justify-center -translate-x-6"
+      className="fixed flex w-full justify-center -translate-x-6"
     >
       <svg
         id="iconSvg"
