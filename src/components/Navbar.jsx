@@ -13,6 +13,7 @@ import { Skeleton } from "./ui/skeleton";
 import { Button } from "./ui/button";
 import MenuCard from "./custom-ui/MenuCard";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [versionsData, setVersionsData] = useState([]);
@@ -57,9 +58,11 @@ export default function Navbar() {
               Версии
             </DropdownMenuLabel>
             {versionsData.length != 0 && !isLoading ? (
-              <DropdownMenuItem className="text-main-purple cursor-pointer">
-                Больше версий
-              </DropdownMenuItem>
+              <Link to="/versions">
+                <DropdownMenuItem className="text-main-purple cursor-pointer">
+                  Больше версий
+                </DropdownMenuItem>
+              </Link>
             ) : null}
           </div>
 
