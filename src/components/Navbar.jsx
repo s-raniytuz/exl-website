@@ -40,12 +40,14 @@ export default function Navbar() {
 
   return (
     <nav className="w-full h-20 flex items-center justify-between">
-      <div className="logo-container flex gap-3">
-        <img src={logo} alt="" />
-        <span className="text-2xl mb-px tracking-wider font-medium text-main-dark">
-          Exiting Life
-        </span>
-      </div>
+      <Link to="/">
+        <div className="logo-container flex gap-3">
+          <img src={logo} alt="" />
+          <span className="text-2xl mb-px tracking-wider font-medium text-main-dark">
+            Exiting Life
+          </span>
+        </div>
+      </Link>
 
       <DropdownMenu>
         <DropdownMenuTrigger>
@@ -97,7 +99,12 @@ export default function Navbar() {
               {versionsData.map((versionObj) => {
                 return (
                   <MenuCard key={versionObj.version}>
-                    <span>{versionObj.version}</span>
+                    <Link
+                      className="w-full h-full flex justify-center items-center"
+                      to={`/versions/${versionObj.version}`}
+                    >
+                      <span>{versionObj.version}</span>
+                    </Link>
                   </MenuCard>
                 );
               })}
